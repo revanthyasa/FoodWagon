@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Restaurant</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #fff; /* White background */
+            color: #333; /* Dark text color */
+        }
+        .form-group label {
+            font-weight: bold;
+            font-size: 18px; /* Increase label font size */
+            color: #2980b9; /* Blue label color */
+            text-transform: uppercase; /* Uppercase labels */
+        }
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%; /* Full width input bars */
+            font-size: 16px; /* Input font size */
+            border: 1px solid #ccc; /* Add border to inputs */
+            padding: 8px; /* Add padding to inputs */
+        }
+        .add-btn {
+            font-size: 14px;
+        }
+        .btn-primary {
+            background-color: #2980b9; /* Blue button */
+            border-color: #2980b9;
+        }
+        .btn-primary:hover {
+            background-color: #21618c; /* Darker blue on hover */
+            border-color: #21618c;
+        }
+        .jumbotron {
+            background-color: #17a2b8; /* Teal background for jumbotron */
+            color: #fff; /* White text color for jumbotron */
+            padding: 20px;
+        }
+        .jumbotron h1 {
+            font-size: 36px;
+        }
+        .jumbotron p {
+            font-size: 18px;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .form-group button {
+            margin-top: 20px; /* Increase margin top for the button */
+            font-size: 20px; /* Make the button slightly bigger */
+            width: 50%; /* Increase button width */
+            margin: 0 auto;
+        }
+        /* Center the button */
+        .center-btn {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Add a New item</h1>
+        <p class="lead">Use the form below to add a new item to the list.</p>
+    </div>
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Restaurant Name:</label>
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.loc.id_for_label }}">Location:</label>
+                        {{ form.loc }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.rating.id_for_label }}">Rating:</label>
+                        {{ form.rating }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.item_name.id_for_label }}">Item-name:</label>
+                        {{ form.itemname }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.price.id_for_label }}">Price:</label>
+                        {{ form.price }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.isveg.id_for_label }}">Veg/Non-Veg:</label>
+                        {{ form.isveg }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.itemimage.id_for_label }}">Image:</label>
+                        {{ form.itemimage }}
+                    </div>
+                </div>
+            </div>
+            <div class="center-btn">
+                <button type="submit" class="btn btn-primary btn-lg">Add Item</button>
+            </div>
+        </form>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

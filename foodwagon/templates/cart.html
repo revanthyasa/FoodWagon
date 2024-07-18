@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... (Head section) ... -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles (optional) */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 40px;
+            max-width: 800px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .table {
+            margin-bottom: 1rem;
+            background-color: #fff;
+        }
+        .table th, .table td {
+            padding: 0.75rem;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+        }
+        .thead-dark th {
+            color: #fff;
+            background-color: #343a40;
+        }
+        .delete-from-cart-btn {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .delete-from-cart-btn:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .empty-cart-msg {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+            margin-top: 30px;
+        }
+        .cart-item-image {
+            max-height: 100px;
+        }
+        .cart-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .checkout-btn {
+            margin-top: 20px;
+        }
+        .restaurants-btn {
+            margin-top: 20px;
+        }
+        .empty-cart-container {
+            text-align: center;
+            padding: 40px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .empty-cart-msg {
+            font-size: 1.2rem;
+            color: #888;
+        }
+        .empty-cart-icon {
+            font-size: 48px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        .order-placed-msg {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+    <!-- ... (Other head elements) ... -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="cart-title">Your Cart</h1>
+        {% if cart %}
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <!-- <th>Quantity</th> -->
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>{{ item.itemname }}</td>
+                    <td>&#8377;{{ item.price }}</td>
+                    <td>
+                        {% if item.itemimage_url %}
+                            <img class="cart-item-image" src="{{ item.itemimage_url }}" alt="{{ item.name }} Image">
+                        {% else %}
+                            No image available
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href='delete_to_cart/{{ item.id }}' class="btn btn-danger btn-sm delete-from-cart-btn">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="cart-total">Total:</td>
+                    <td class="cart-total">&#8377;{{ total_cost }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="{% url 'place_order' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary checkout-btn">Order Now</button>
+            <a href="{% url 'restaurants' %}" class="btn btn-primary restaurants-btn">Menu</a>
+        </form>
+        
+        {% else %}
+        <div class="empty-cart-container">
+            <i class="fas fa-shopping-cart empty-cart-icon"></i>
+            <p class="empty-cart-msg">Your cart is empty.</p>
+            <a href="{% url 'restaurants' %}" class="btn btn-primary restaurants-btn">Go to Menu Page</a>
+        </div>
+        {% endif %}
+
+        {% if order_placed %}
+        <div class="order-placed-msg">
+            Your order has been placed!
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- ... (Rest of your existing code) ... -->
+</body>
+</html>

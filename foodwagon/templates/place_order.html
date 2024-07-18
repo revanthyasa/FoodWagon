@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        .custom-email-field {
+            width: 100%; 
+            height: 50x; 
+            font-size: 16px; 
+            padding: 8px; /* Set the padding around the input */
+            border: 1px solid #ccc; /* Add a border to the input */
+            border-radius: 4px; /* Add rounded corners to the input */
+            box-sizing: border-box; /* Ensure padding and border are included in the total width */
+            /* Add any additional styles as needed */
+        }
+        .jumbotron {
+            background-color: #17a2b8;
+            color: #fff;
+            padding: 40px;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+        .form-group label {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2980b9;
+            text-transform: uppercase;
+        }
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        .add-btn {
+            font-size: 14px;
+        }
+        .btn-primary {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        .btn-primary:hover {
+            background-color: #21618c;
+            border-color: #21618c;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .form-group button {
+            margin-top: 20px;
+            font-size: 20px;
+            width: 100%;
+        }
+        .center-btn {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Place Order</h1>
+        <p class="lead">Enter your order details</p>
+    </div>
+
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Name:</label>
+                        {{ form.full_name }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email:</label><br>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.address.id_for_label }}">Address:</label><br>
+                        {{ form.address }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.phone_number.id_for_label }}">Phone Number:</label>
+                        {{ form.phone_number }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.payment_method.id_for_label }}">Payment Method:</label>
+                        {{ form.payment_method }}
+                    </div>
+                </div>
+            </div>
+            <div class="center-btn">
+                <button type="submit" onclick="f1()"class="btn btn-primary btn-lg" id="placeorder">
+                    <i class="fas fa-shopping-cart mr-2"></i> Place Order
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // $(document).ready(function () {
+        //     $("#placeorder").click(function () {
+        //         alert("Your order has been placed successfully!");
+        //     });
+        // });
+        function f1(){
+            alert("Your order has been placed successfully!");
+        }
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
